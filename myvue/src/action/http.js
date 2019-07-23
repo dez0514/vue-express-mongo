@@ -8,19 +8,19 @@ var filter = {
 };
 const request = (url, options, baseUrl, isLoading) => {
   return new Promise((resolve, reject) => {
-    var innerUrl = 'http://localhost:3000';
+    var innerUrl = '';
     var api = url
-    // if (baseUrl !== undefined || baseUrl !== '') {
-    //   innerUrl = baseUrl
-    // } else {
-    //   innerUrl = baseApi
-    // }
+    if (!baseUrl) {
+      innerUrl = baseApi
+    } else {
+      innerUrl = baseUrl
+    }
     console.log(innerUrl)
-    // if (isLoading) {
-    //   Vue.$vux.loading.show({
-    //     text: 'Loading'
-    //   })
-    // }
+    if (isLoading) {
+      // Vue.$vux.loading.show({
+      //   text: 'Loading'
+      // })
+    }
     axios({
       url: innerUrl + api,
       method: options.method,
@@ -29,7 +29,6 @@ const request = (url, options, baseUrl, isLoading) => {
         'Content-Type': 'application/json; charset=UTF-8'
       }
     }).then(({data}) => {
-      // console.log('第一次直接拿到的数据:', {data}) // code 要根据返回的data改
       // if (isLoading) {
       //   Vue.$vux.loading.hide()
       // }
