@@ -1,14 +1,16 @@
 <template>
   <div>
+    <vheader></vheader>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
+import vheader from './components/header'
   export default {
     name: 'app',
     components: {
-     
+     vheader
     },
     data() {
       return {
