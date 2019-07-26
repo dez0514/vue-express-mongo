@@ -123,7 +123,7 @@
         }
       }
       .imgwrap {
-        width: 100%;
+        width: 648px;
         margin-bottom: 25px;
       }
       .imgwrap img {
@@ -175,6 +175,9 @@
     }
     .art-ico-wrap {
       justify-content: center;
+    }
+    .imgwrap {
+      width: 100%!important;
     }
   }
 </style>

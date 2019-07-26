@@ -2,7 +2,34 @@
     <div>
         <transition name="slidein">
             <div class="slide-right" v-show="showTank">
-                <div>2121231231</div>
+                <div v-show="showdesc">
+                    <div class="avatar-wrap">
+                        <img class="avatar" src="./images/avatar.png" alt="">
+                    </div>
+                    <div class="nick">寒山少年</div>
+                   <div class="words">昨天太近，明天太远</div>
+                   <div class="grop-wrap">
+                       <div class="group">
+                           <div class="num">35</div>
+                           <div class="txt">日记</div>
+                       </div>
+                       <div class="group center">
+                           <div class="num">35</div>
+                           <div class="txt">分类</div>
+                       </div>
+                       <div class="group">
+                           <div class="num">35</div>
+                           <div class="txt">标签</div>
+                       </div>
+                   </div>
+                   <div class="link-wrap">
+                       <div class="link-item">
+                           <div class="link-dot"></div>
+                            <div class="link-icon"><img src="./images/github-w.png" alt=""></div>
+                            <div class="link-txt">Github</div>
+                       </div>
+                    </div>
+                </div>
             </div>
         </transition>
         <div class="arrow-wrap" :class="showTank ? 'close':''">
@@ -12,11 +39,13 @@
                 <i></i>
             </div>
         </div>
-        <div class="top-wrap" v-show="showTop" @click="toTop">
-            <div class="top">
-                <img src="../images/top.png" alt="">
+        <transition name="upin">
+            <div class="top-wrap" v-show="showTop" @click="toTop">
+                <div class="top">
+                    <img src="../images/top.png" alt="">
+                </div>
             </div>
-        </div>
+        </transition>
     </div>
 </template>
 <script>
@@ -24,7 +53,8 @@
         data() {
             return {
                 showTank: false,
-                showTop: false
+                showTop: false,
+                showdesc: false // 弹窗先出来内容再出来
             }
         },
         methods: {
@@ -32,9 +62,13 @@
             arrowClick() {
                 this.showTank = !this.showTank
                 if (!this.showTank) {
+                    this.showdesc = false
                     this.$emit('changeBodyPad', 0)
                 } else {
                     this.$emit('changeBodyPad', 320)
+                    setTimeout(()=>{
+                        this.showdesc = true
+                    },200)
                 }
             },
             scrollToTop() {
@@ -61,6 +95,7 @@
             }
         },
         mounted() {
+            this.$emit('changeBodyPad', 0)
             window.addEventListener('scroll', this.scrollToTop)
         }
     }
@@ -77,7 +112,102 @@
         background: #222;
         color: #fff;
     }
-
+    .avatar-wrap {
+        margin-top: 40px;
+        height: 110px;
+    }
+    .avatar {
+        display: block;
+        margin: 0 auto 0;
+        max-width: 96px;
+        height: auto;
+        border: 2px solid #333;
+        padding: 2px;
+        border-radius: 50%;
+        transition: 1.4s all;
+    }
+    .avatar:hover {
+        transform: rotate(360deg);
+        max-width: 106px;
+        border: 2px solid pink;
+    }
+    .nick {
+        margin: 15px 0 0;
+        text-align: center;
+        color: #f5f5f5;
+        font-weight: 400;
+    }
+    .words {
+        margin-top: 15px;
+        margin-bottom: 25px;
+        text-align: center;
+        font-size: 14px;
+        color: #999;
+    }
+    .grop-wrap {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .group {
+            color: #999;
+            padding: 0 15px;
+            margin-bottom: 25px;
+            .num {
+                text-align: center;
+                font-weight: 600;
+                font-size: 18px;
+            }
+            .txt {
+                font-size: 13px;
+            }
+            &.center {
+                border-left: 1px solid #333;
+                border-right: 1px solid #333;
+            }
+        }
+    }
+    .link-wrap {
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       .link-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-bottom: 4px;
+            border-bottom: 1px solid #555;
+            cursor: pointer;
+       }
+       .link-dot {
+            margin-right: 4px;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: #c4ff70;
+       }
+        .link-icon {
+            width: 18px;
+            margin-right: 4px;
+            opacity: .5;
+            img {
+                display: block;
+                width: 100%;
+            }
+        }
+        .link-txt {
+            font-size: 13px;
+            color: #999;
+        }
+        .link-item:hover .link-icon{
+            opacity: 1;
+        }
+        .link-item:hover {
+            border-bottom: 1px solid #fff;
+        }
+        .link-item:hover .link-txt{
+           color: #fff;
+       }
+    }
     .top-wrap {
         z-index: 1010;
         position: fixed;
@@ -185,6 +315,17 @@
     .slidein-leave-to {
         width: 0;
     }
+
+    .upin-enter-active,
+    .upin-leave-active {
+        transition: all .3s ease;
+    }
+
+    .upin-enter,
+    .upin-leave-to {
+        bottom: -34px;
+    }
+
      @media (max-width: 768px) {
         .arrow-wrap ,.to-wrap{
             display: none;
