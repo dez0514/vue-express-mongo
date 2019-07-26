@@ -3,7 +3,7 @@
         <img class="togit" src="./images/togit.png" alt="">
         <div class="inner-header">
             <div class="logo-wrap">
-                <div class="logo">wade</div>
+                <div class="logo" @click="jumpRouter('index')">wade</div>
                 <div class="openbtn" @click="changeShowList">
                     <span style="margin-top:0"></span>
                     <span></span>
@@ -12,7 +12,7 @@
             </div>
             <transition name="draw">
                 <div class="inner-list"  v-show="boxshow">
-                    <div class="inner-item" v-for="(item,index) in tablist" :key="index">
+                    <div class="inner-item" v-for="(item,index) in tablist" :key="index" @click="jumpRouter(item.name)">
                         <div><img class="item-icon" :src="item.icon" alt=""></div>
                         <div class="item-txt">{{item.txt}}</div>
                     </div>
@@ -26,12 +26,12 @@ export default {
     data(){
         return {
             tablist: [
-                {txt:'首页',icon: require('./images/ico-home.png')},
-                {txt:'分类',icon: require('./images/ico-group.png')},
-                {txt:'标签',icon: require('./images/ico-tags.png')},
-                {txt:'归档',icon: require('./images/ico-record.png')},
-                {txt:'关于',icon: require('./images/ico-mine.png')},
-                {txt:'搜索',icon: require('./images/ico-search.png')}
+                {txt:'首页',name: 'index', icon: require('./images/ico-home.png')},
+                {txt:'分类',name: 'index', icon: require('./images/ico-group.png')},
+                {txt:'标签',name: 'index', icon: require('./images/ico-tags.png')},
+                {txt:'归档',name: 'index', icon: require('./images/ico-record.png')},
+                {txt:'关于',name: 'about', icon: require('./images/ico-mine.png')},
+                {txt:'搜索',name: 'index', icon: require('./images/ico-search.png')}
             ],
             showlist: false,
             boxshow:false
@@ -41,6 +41,9 @@ export default {
         changeShowList(){
             // this.showlist = !this.showlist
             this.boxshow = !this.boxshow
+        },
+        jumpRouter(name){
+            this.$router.push({name:name})
         }
     }
 }
@@ -115,12 +118,13 @@ export default {
      display: none;
   }
   .draw-enter-active, .draw-leave-active {
-    transition: all 1s ease;
+    transition: all .6s ease;
    }
    .draw-enter,
   .draw-leave-to {
     height: 0;
   }
+  
  @media (min-width: 768px) {
     .inner-header {
         padding: 25px 0;
@@ -158,4 +162,9 @@ export default {
         cursor: pointer;
     }
  }
+ @media (min-width: 1600px) {
+    .inner-header {
+      width: 900px;
+    }
+  }
 </style>

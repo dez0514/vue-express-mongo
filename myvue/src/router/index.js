@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 const index = r => require.ensure([], () => r(require('../pages/home/index.vue')), 'index')
+const about = r => require.ensure([], () => r(require('../pages/about/index.vue')), 'about')
 Vue.use(Router)
 
 const router = new Router({
@@ -12,6 +13,14 @@ const router = new Router({
         title: '首页'
       },
       component: index
+    },
+    {
+      path: '/about',
+      name: 'about',
+      meta: {
+        title: '关于'
+      },
+      component: about
     }
   ]
 })
