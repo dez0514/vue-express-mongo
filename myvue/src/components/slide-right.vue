@@ -152,6 +152,7 @@
             color: #999;
             padding: 0 15px;
             margin-bottom: 25px;
+            cursor: pointer;
             .num {
                 text-align: center;
                 font-weight: 600;
@@ -164,6 +165,9 @@
                 border-left: 1px solid #333;
                 border-right: 1px solid #333;
             }
+        }
+        .group:hover {
+            color: #fff;
         }
     }
     .link-wrap {
