@@ -3,7 +3,7 @@
         <img class="togit" src="./images/togit.png" alt="">
         <div class="inner-header">
             <div class="logo-wrap">
-                <div class="logo" @click="jumpRouter('index')">wade</div>
+                <div class="logo" @click="jumpRouter('index')">dez</div>
                 <div class="openbtn" @click="changeShowList">
                     <span style="margin-top:0"></span>
                     <span></span>
