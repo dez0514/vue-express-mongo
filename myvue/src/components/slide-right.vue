@@ -217,13 +217,12 @@
         position: fixed;
         right: 30px;
         bottom: 16px;
-
+        cursor: pointer;
         .top {
             width: 14px;
             height: 14px;
             padding: 10px;
             background: #222;
-
             img {
                 display: block;
                 width: 100%;
@@ -329,10 +328,10 @@
     .upin-leave-to {
         bottom: -34px;
     }
-
-     @media (max-width: 768px) {
-        .arrow-wrap ,.to-wrap{
+    
+     @media (max-width: 1088px) {
+        .arrow-wrap ,.to-wrap {
             display: none;
         }
-     }
+    }
 </style>

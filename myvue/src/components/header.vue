@@ -18,20 +18,25 @@
                     </div>
                 </div>
             </transition>
-        </div> 
+        </div>
+        <searchWrap ref="search"></searchWrap>
     </div>
 </template>
 <script>
+import searchWrap from './search'
 export default {
+    components: {
+        searchWrap
+    },
     data(){
         return {
             tablist: [
                 {txt:'首页',name: 'index', icon: require('./images/ico-home.png')},
-                {txt:'分类',name: 'index', icon: require('./images/ico-group.png')},
-                {txt:'标签',name: 'index', icon: require('./images/ico-tags.png')},
-                {txt:'归档',name: 'index', icon: require('./images/ico-record.png')},
+                {txt:'分类',name: 'group', icon: require('./images/ico-group.png')},
+                {txt:'标签',name: 'tags', icon: require('./images/ico-tags.png')},
+                {txt:'归档',name: 'archive', icon: require('./images/ico-record.png')},
                 {txt:'关于',name: 'about', icon: require('./images/ico-mine.png')},
-                {txt:'搜索',name: 'index', icon: require('./images/ico-search.png')}
+                {txt:'搜索',name: 'search', icon: require('./images/ico-search.png')}
             ],
             showlist: false,
             boxshow:false
@@ -42,7 +47,14 @@ export default {
             // this.showlist = !this.showlist
             this.boxshow = !this.boxshow
         },
+        changeShowSearch(){
+            this.$refs.search.showSearch()
+        },
         jumpRouter(name){
+            if(name == 'search') {
+                this.changeShowSearch()
+                return false
+            }
             this.$router.push({name:name})
         }
     }
