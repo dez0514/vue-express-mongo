@@ -1,6 +1,6 @@
 <template>
     <div class="footer-wrap">
-        <div class="footer">© 2019 dez is sunny boy</div>
+        <div class="footer">© 2019 dez is a sunny boy</div>
     </div>
 </template>
 <style lang="scss" scoped>
@@ -12,6 +12,11 @@
         text-align: center;
         color: #666;
         font-size: 14px;
+    }
+}
+@media (max-width: 768px) {
+    .footer-wrap {
+        padding: 18px 0;
     }
 }
 </style>

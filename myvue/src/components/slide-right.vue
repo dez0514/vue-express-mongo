@@ -2,7 +2,7 @@
     <div>
         <transition name="slidein">
             <div class="slide-right" v-show="showTank">
-                <div v-show="showdesc">
+                <div>
                     <div class="avatar-wrap">
                         <img class="avatar" src="./images/avatar.png" alt="">
                     </div>
@@ -53,8 +53,7 @@
         data() {
             return {
                 showTank: false,
-                showTop: false,
-                showdesc: false // 弹窗先出来内容再出来
+                showTop: false
             }
         },
         methods: {
@@ -62,13 +61,9 @@
             arrowClick() {
                 this.showTank = !this.showTank
                 if (!this.showTank) {
-                    this.showdesc = false
                     this.$emit('changeBodyPad', 0)
                 } else {
                     this.$emit('changeBodyPad', 320)
-                    setTimeout(()=>{
-                        this.showdesc = true
-                    },200)
                 }
             },
             scrollToTop() {
@@ -235,6 +230,7 @@
         position: fixed;
         right: 30px;
         bottom: 55px;
+        cursor: pointer;
     }
 
     .arrow {
@@ -316,7 +312,8 @@
 
     .slidein-enter,
     .slidein-leave-to {
-        width: 0;
+        // width: 0;
+        right: -320px;
     }
 
     .upin-enter-active,

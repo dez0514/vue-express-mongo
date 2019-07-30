@@ -33,16 +33,18 @@
         </div>
       </div> 
     </div>
+    <pagination></pagination>
   </div>
 </template>
 
 <script>
+import Pagination from '../../components/pagination'
   export default {
     props: {
 
     },
     components: {
- 
+      Pagination
     },
     data() {
       return {

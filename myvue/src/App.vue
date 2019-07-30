@@ -1,8 +1,11 @@
 <template>
   <div class="container-wrap" :style="{paddingRight:bodyPadding + 'px'}">
     <vheader></vheader>
-    <router-view></router-view>
+    <div class="wrappers">
+      <router-view></router-view>
+    </div>
     <raside @changeBodyPad="changePadRight"></raside>
+    <laside></laside>
     <vfooter></vfooter>
   </div>
 </template>
@@ -11,11 +14,13 @@
 import vheader from './components/header'
 import vfooter from './components/footer'
 import raside from './components/slide-right'
+import laside from './components/slide-left'
   export default {
     name: 'app',
     components: {
      vheader,
      raside,
+     laside,
      vfooter
     },
     data() {
@@ -50,12 +55,12 @@ import raside from './components/slide-right'
     overflow: hidden;
     transition: all .3s ease;
   }
-  /* .container {
-    min-height: calc(100vh - 178px)!important;
+  .wrappers {
+    min-height: calc(100vh - 177px);
   }
-  @media (min-width: 768px) {
-    .container {
-      min-height: calc(100vh - 134px)!important;
+  @media (max-width: 768px) {
+    .wrappers {
+      min-height: calc(100vh - 110px);
     }
-  } */
+  }
 </style>
