@@ -1,9 +1,9 @@
 <template>
     <div class="pagination-wrap">
         <div class="page-list">
-            <div class="prev pages-widgt" v-show="pageidx!=1" @click="prevPage"><</div>
+            <div class="prev pages-widgt" :class="pageidx == 1 ? 'graycolor':''" @click="prevPage"><</div>
             <div class="pages-widgt" :class="item == pageidx ? 'current':''" v-for="(item,index) in pages" :key="index" @click="changePage(item)">{{item}}</div>
-            <div class="next pages-widgt" v-show="pageidx!=pages" @click="nextPage">></div>
+            <div class="next pages-widgt" :class="pageidx == pages ? 'graycolor':''" @click="nextPage">></div>
         </div>
     </div>
 </template>
@@ -21,6 +21,10 @@ export default {
         pageindex: { // 页码
             type: Number,
             default: 1
+        },
+        showmostpage: { //最多展示几个页码? 多的省略号
+            type: Number,
+            default: 6
         }
     },
     watch:{
@@ -32,6 +36,9 @@ export default {
         },
         total(val) {
             this.size = val || 1
+        },
+        showpages(val) {
+            this.showmostpage || 6
         }
     },
     computed: {
@@ -46,10 +53,16 @@ export default {
             size : this.total || 1 // 总记录数
         }
     },
+    mounted(){
+    },
     methods:{
         // 点击页码
         changePage(pageindex){
+            if(this.pageidx == pageindex){
+                return false
+            }
             this.pageidx = pageindex
+            this.$emit('onchange', this.pageidx)
         },
         // 下一页
         nextPage() {
@@ -57,6 +70,7 @@ export default {
                 return false
             }
             this.pageidx ++
+            this.$emit('onchange', this.pageidx)
         },
         // 上一页
         prevPage() {
@@ -64,6 +78,7 @@ export default {
                 return false
             }
             this.pageidx --
+            this.$emit('onchange', this.pageidx)
         }
     }
 }
@@ -71,11 +86,11 @@ export default {
 <style lang="scss" scoped>
 .page-list {
     overflow: hidden;
+    position: relative;
     border-top: 1px solid #ccc;
     margin-bottom: 40px;
     .pages-widgt {
         float: left;
-        margin: 0 10px 0 0;
         color: #0593d3;
         background: #fff;
         border-top: 1px solid #fff;
@@ -89,10 +104,42 @@ export default {
     .pages-widgt:hover {
         border-top: 1px solid #000;
     }
+    .prev-hide {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 38px;
+        text-align: center;
+        color: #ccc;
+        background: #fff;
+        border-top: 1px solid #fff;
+        font-size: 14px;
+        height: 38px;
+        line-height: 30px;
+    }
+    .next-hide {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 38px;
+        text-align: center;
+        color: #ccc;
+        background: #fff;
+        border-top: 1px solid #fff;
+        font-size: 14px;
+        height: 38px;
+        line-height: 30px;
+    }
     .current {
         color: #fff;
         background: #ccc;
         border-top: 1px solid #ccc!important;
+    }
+    .graycolor {
+        color: #ccc;
+    }
+    .graycolor:hover {
+        border-top: 1px solid #fff;
     }
 }
 

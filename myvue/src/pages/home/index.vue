@@ -33,7 +33,7 @@
         </div>
       </div> 
     </div>
-    <pagination></pagination>
+    <pagination :total="50" @onchange="onChangePage"></pagination>
   </div>
 </template>
 
@@ -71,7 +71,10 @@ import Pagination from '../../components/pagination'
       }
     },
     methods: {
-
+      onChangePage(name){
+        console.log(222)
+        console.log('当前页码:', name)
+      }
 
     },
     mounted() {
