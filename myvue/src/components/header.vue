@@ -51,6 +51,8 @@ export default {
             this.$refs.search.showSearch()
         },
         jumpRouter(name){
+            // console.log(this.$router.currentRoute.name)
+            if(name == this.$router.currentRoute.name) return
             if(name == 'search') {
                 this.changeShowSearch()
                 return false

@@ -178,9 +178,6 @@ import Pagination from '../../components/pagination'
       font-size: 20px!important;
       text-align: center;
     }
-    .art-ico-wrap {
-      justify-content: center;
-    }
     .imgwrap {
       width: 100%!important;
     }

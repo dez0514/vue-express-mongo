@@ -45,17 +45,18 @@ export default {
 }
 .search-pop {
     position: fixed;
-    top: 10%;
-    left: 50%;
-    margin-left: -350px;
-    width: 700px;
-    height: 80%;
+    top: 0;
+    left: 0;
+    margin-left: 0;
+    width: 100%;
+    height: 100%;
     padding: 0;
     background: #fff;
     color: #333;
     z-index: 9999;
-    border-radius: 5px;
+    border-radius: 0;
 }
+
 .search-wrap {
     display: flex;
     align-items: center;
@@ -99,5 +100,20 @@ export default {
     position: relative;
     padding: 5px 25px;
     height: calc(100% - 55px);
+}
+@media (min-width: 768px) {
+    .search-pop {
+        position: fixed;
+        top: 10%;
+        left: 50%;
+        margin-left: -350px;
+        width: 700px;
+        height: 80%;
+        padding: 0;
+        background: #fff;
+        color: #333;
+        z-index: 9999;
+        border-radius: 5px;
+    }
 }
 </style>

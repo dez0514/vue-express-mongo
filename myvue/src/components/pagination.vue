@@ -1,9 +1,9 @@
 <template>
     <div class="pagination-wrap">
         <div class="page-list">
-            <div class="prev pages-widgt" :class="pageidx == 1 ? 'graycolor':''" @click="prevPage"><</div>
+            <div class="prev pages-widgt" :class="pageidx == 1 ? 'graycolor':''" @click="prevPage">&lt;</div>
             <div class="pages-widgt" :class="item == pageidx ? 'current':''" v-for="(item,index) in pages" :key="index" @click="changePage(item)">{{item}}</div>
-            <div class="next pages-widgt" :class="pageidx == pages ? 'graycolor':''" @click="nextPage">></div>
+            <div class="next pages-widgt" :class="pageidx == pages ? 'graycolor':''" @click="nextPage">&gt;</div>
         </div>
     </div>
 </template>
@@ -85,12 +85,12 @@ export default {
 </script>
 <style lang="scss" scoped>
 .page-list {
-    overflow: hidden;
     position: relative;
     border-top: 1px solid #ccc;
     margin-bottom: 40px;
+    display: flex;
+    flex-wrap: wrap;
     .pages-widgt {
-        float: left;
         color: #0593d3;
         background: #fff;
         border-top: 1px solid #fff;
@@ -100,6 +100,9 @@ export default {
         line-height: 38px;
         text-align: center;
         cursor: pointer;
+        &.prev,&.next {
+            width: 30px;
+        }
     }
     .pages-widgt:hover {
         border-top: 1px solid #000;
