@@ -9,21 +9,21 @@
                     <div class="nick">寒山少年</div>
                    <div class="words">昨天太近，明天太远</div>
                    <div class="grop-wrap">
-                       <div class="group">
+                       <div class="group" @click="gotoRouter('archive')">
                            <div class="num">35</div>
                            <div class="txt">日记</div>
                        </div>
-                       <div class="group center">
+                       <div class="group center" @click="gotoRouter('group')">
                            <div class="num">35</div>
                            <div class="txt">分类</div>
                        </div>
-                       <div class="group">
+                       <div class="group" @click="gotoRouter('tags')">
                            <div class="num">35</div>
                            <div class="txt">标签</div>
                        </div>
                    </div>
                    <div class="link-wrap">
-                       <div class="link-item">
+                       <div class="link-item" @click="toGit">
                            <div class="link-dot"></div>
                             <div class="link-icon"><img src="./images/github-w.png" alt=""></div>
                             <div class="link-txt">Github</div>
@@ -57,6 +57,12 @@
             }
         },
         methods: {
+            gotoRouter(name){
+                this.$router.push({name:name})
+            },
+            toGit() {
+                window.open('https://github.com/dez0514')
+            },
             // 点击关闭和显示
             arrowClick() {
                 this.showTank = !this.showTank

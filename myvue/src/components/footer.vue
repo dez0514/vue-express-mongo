@@ -1,6 +1,6 @@
 <template>
     <div class="footer-wrap">
-        <div class="footer">© 2019 dez is a sunny boy</div>
+        <div class="footer">© dez is a sunny boy</div>
     </div>
 </template>
 <style lang="scss" scoped>
