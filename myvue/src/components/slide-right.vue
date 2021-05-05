@@ -311,7 +311,9 @@
         }
     }
 
-    .slidein-enter-active,
+    .slidein-enter-active {
+       transition: all .2s ease; 
+    }
     .slidein-leave-active {
         transition: all .3s ease;
     }
